@@ -1,19 +1,114 @@
 ﻿using UnityEngine;
 using System;
 using System.Collections;
-using KinectSensor;
+using Kinect2;
+using System.Runtime.InteropServices;
 
 public class KinectBehaviourScript : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
+	public KinectSensor GetKinectSensor()
+	{
 		IntPtr sensor = IntPtr.Zero;
 		var hr = NativeMethods.GetDefaultKinectSensor( ref sensor );
-		print( "Kinect Initialize : " + hr.ToString() );
+		return (KinectSensor)Marshal.GetObjectForIUnknown( sensor );
 	}
-	
+
+	public KinectSensor OpenKinectSensor()
+	{
+		var kinect = GetKinectSensor();
+		var hr = kinect.Open();
+		return kinect;
+	}
+
+	public ColorFrameSource GetColorFrameSource()
+	{
+		KinectSensor kinect = OpenKinectSensor();
+		
+		IntPtr ptr = IntPtr.Zero;
+		var hr = kinect.get_ColorFrameSource( out ptr );
+		
+		return (ColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
+	}
+
+	public ColorFrameReader GetColorFrameReader()
+	{
+		IntPtr ptr = IntPtr.Zero;
+		var colorFrame = GetColorFrameSource();
+		var hr = colorFrame.OpenReader( out ptr );
+		
+		return (ColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
+	}
+
+	public ColorFrame GetColorFrame( ColorFrameReader colorReader )
+	{
+		IntPtr ptr = IntPtr.Zero;
+		var hr = colorReader.AcquireLatestFrame( out ptr );
+		if (ptr == IntPtr.Zero ) {
+			return null;
+		}
+
+		return (ColorFrame)Marshal.GetObjectForIUnknown( ptr );
+	}
+
+	ColorFrameReader colorReader;
+	TextMesh tm;
+	TextMesh tm2;
+	Texture2D texture;
+
+	// Use this for initialization
+	void Start () {
+		GameObject go = GameObject.Find("TextMessage");
+		tm = (TextMesh)go.GetComponent("TextMesh");
+		tm.text = "Kinect Initialize";
+
+		go = GameObject.Find("TextMessage2");
+		tm2 = (TextMesh)go.GetComponent("TextMesh");
+
+		colorReader = GetColorFrameReader();
+		
+		texture = guiTexture.texture as Texture2D;
+		if (texture == null) {
+			texture = new Texture2D(1920,1080, TextureFormat.BGRA32,false);
+			guiTexture.texture = texture;
+			tm.text = "texture created.";
+		}
+
+	}
+
+	int frameCount = 0;
+
 	// Update is called once per frame
 	void Update () {
-	
+		try {
+			if ( colorReader == null ) {
+				return;
+			}
+			
+			frameCount++;
+			//tm2.text = frameCount.ToString();
+			
+			var colorFrame = GetColorFrame( colorReader );
+			if ( colorFrame == null ) {
+				return;
+			}
+
+			UInt64 count = 1920*1080*4;
+			IntPtr ptr = Marshal.AllocHGlobal( (int)count );
+			var hr = colorFrame.CopyConvertedFrameDataToArray( count, ptr, (UInt64)ColorImageFormat.Bgra );
+
+			var pixels = new byte[count];
+			Marshal.Copy( ptr, pixels, 0, (int)count );
+			
+			tm.text = "hgoepiyo";
+
+			tm2.text = string.Format( "{0},{1},{2},{3}", pixels[0], pixels[1], pixels[2], pixels[3] );
+			
+			texture.LoadImage( pixels );
+			
+			
+			Marshal.FreeHGlobal( ptr );
+		} catch (Exception ex) {
+			tm.text = ex.StackTrace;
+		}
 	}
 }

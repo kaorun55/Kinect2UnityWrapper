@@ -4,7 +4,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace KinectSensor
+namespace Kinect2
 {
     public class NativeMethods
     {

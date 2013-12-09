@@ -7,7 +7,7 @@
     <ProjectGuid>{3EB56256-F22A-4CC3-8C5D-4B3E218E54A2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KinectSensor</RootNamespace>
+    <RootNamespace>Kinect2</RootNamespace>
     <AssemblyName>KinectSensor</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorFrame.cs" />
+    <Compile Include="ColorFrameReader.cs" />
     <Compile Include="ColorFrameSource.cs" />
     <Compile Include="KinectSensor.cs" />
     <Compile Include="NativeMethods.cs" />

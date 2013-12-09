@@ -5,7 +5,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 
-namespace KinectSensor
+namespace Kinect2
 {
     [Guid( "57621D82-D8EE-4783-B412-F7E019C96CFD" )]
     [InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]

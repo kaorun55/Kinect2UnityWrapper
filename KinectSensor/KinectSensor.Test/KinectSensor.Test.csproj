@@ -75,6 +75,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="NativeMethodsTest.cs" />
     <Compile Include="ColorFrameSourceTest.cs" />
+    <Compile Include="ColorFrameTest.cs" />
+    <Compile Include="ColorFrameReaderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KinectSensor\KinectSensor.csproj">

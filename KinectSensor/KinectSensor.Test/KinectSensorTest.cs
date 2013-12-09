@@ -2,7 +2,7 @@
 using System.Runtime.InteropServices;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace KinectSensor.Test
+namespace Kinect2.Test
 {
     [TestClass]
     public class KinectSensorTest
