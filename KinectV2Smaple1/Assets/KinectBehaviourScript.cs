@@ -53,6 +53,7 @@ public class KinectBehaviourScript : MonoBehaviour {
 	ColorFrameReader colorReader;
 	TextMesh tm;
 	TextMesh tm2;
+	TextMesh tm3;
 	Texture2D texture;
 
 	// Use this for initialization
@@ -60,9 +61,12 @@ public class KinectBehaviourScript : MonoBehaviour {
 		GameObject go = GameObject.Find("TextMessage");
 		tm = (TextMesh)go.GetComponent("TextMesh");
 		tm.text = "Kinect Initialize";
-
+		
 		go = GameObject.Find("TextMessage2");
 		tm2 = (TextMesh)go.GetComponent("TextMesh");
+		
+		go = GameObject.Find("TextMessageFPS");
+		tm3 = (TextMesh)go.GetComponent("TextMesh");
 
 		colorReader = GetColorFrameReader();
 		
@@ -83,14 +87,14 @@ public class KinectBehaviourScript : MonoBehaviour {
 			if ( colorReader == null ) {
 				return;
 			}
-			
-			frameCount++;
-			//tm2.text = frameCount.ToString();
-			
+
 			var colorFrame = GetColorFrame( colorReader );
 			if ( colorFrame == null ) {
 				return;
 			}
+			
+			frameCount++;
+			tm3.text = frameCount.ToString();
 
 			UInt64 count = 1920*1080*4;
 			IntPtr ptr = Marshal.AllocHGlobal( (int)count );
@@ -98,6 +102,7 @@ public class KinectBehaviourScript : MonoBehaviour {
 
 			var pixels = new byte[count];
 			Marshal.Copy( ptr, pixels, 0, (int)count );
+			Marshal.FreeHGlobal( ptr );
 			
 			tm.text = "hgoepiyo";
 
@@ -106,7 +111,8 @@ public class KinectBehaviourScript : MonoBehaviour {
 			texture.LoadImage( pixels );
 			
 			
-			Marshal.FreeHGlobal( ptr );
+
+			colorFrame = null;
 		} catch (Exception ex) {
 			tm.text = ex.StackTrace;
 		}
