@@ -45,7 +45,10 @@ namespace Kinect2.Test
         public void AcquireLatestFrameTest()
         {
             var frame = GetColorFrame();
-            //frame = AcquireLatestFrame();
+            Marshal.ReleaseComObject( frame );
+
+            frame = GetColorFrame();
+            Marshal.ReleaseComObject( frame );
         }
     }
 }

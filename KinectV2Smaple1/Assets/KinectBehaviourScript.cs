@@ -69,11 +69,10 @@ public class KinectBehaviourScript : MonoBehaviour {
 		tm3 = (TextMesh)go.GetComponent("TextMesh");
 
 		colorReader = GetColorFrameReader();
-		
-		texture = guiTexture.texture as Texture2D;
+
 		if (texture == null) {
 			texture = new Texture2D(1920,1080, TextureFormat.BGRA32,false);
-			guiTexture.texture = texture;
+			renderer.material.mainTexture = texture;
 			tm.text = "texture created.";
 		}
 
@@ -83,38 +82,48 @@ public class KinectBehaviourScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
+		IntPtr colorFramePtr = IntPtr.Zero;
+
 		try {
 			if ( colorReader == null ) {
+				tm.text = "colorReader == null";
 				return;
 			}
-
-			var colorFrame = GetColorFrame( colorReader );
-			if ( colorFrame == null ) {
+			var hr = colorReader.AcquireLatestFrame( out colorFramePtr );
+			if (colorFramePtr == IntPtr.Zero ) {
 				return;
 			}
 			
+			var colorFrame = (ColorFrame)Marshal.GetObjectForIUnknown( colorFramePtr );
+			if ( colorFrame == null ) {
+				tm.text = "colorFrame == null";
+				return;
+			}
 			frameCount++;
 			tm3.text = frameCount.ToString();
+			
 
 			UInt64 count = 1920*1080*4;
 			IntPtr ptr = Marshal.AllocHGlobal( (int)count );
-			var hr = colorFrame.CopyConvertedFrameDataToArray( count, ptr, (UInt64)ColorImageFormat.Bgra );
+			hr = colorFrame.CopyConvertedFrameDataToArray( count, ptr, (UInt64)ColorImageFormat.Bgra );
 
 			var pixels = new byte[count];
 			Marshal.Copy( ptr, pixels, 0, (int)count );
 			Marshal.FreeHGlobal( ptr );
-			
-			tm.text = "hgoepiyo";
+
+			//tm.text = "hgoepiyo";
 
 			tm2.text = string.Format( "{0},{1},{2},{3}", pixels[0], pixels[1], pixels[2], pixels[3] );
 			
-			texture.LoadImage( pixels );
+			texture.LoadRawTextureData( pixels );
+			texture.Apply();
 			
-			
-
-			colorFrame = null;
+			Marshal.ReleaseComObject( colorFrame );
+			Marshal.Release( colorFramePtr );
 		} catch (Exception ex) {
 			tm.text = ex.StackTrace;
+		}
+		finally{
 		}
 	}
 }
