@@ -12,5 +12,16 @@ namespace Kinect2
             : base( ptr )
         {
         }
+
+        public BodyFrame AcquireLatestFrame()
+        {
+            IntPtr ptr = IntPtr.Zero;
+            var hr = ComPointer.AcquireLatestFrame( out ptr );
+            if ( hr != 0 ) {
+                throw new Exception( hr.ToString() );
+            }
+
+            return new BodyFrame( ptr );
+        }
     }
 }

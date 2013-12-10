@@ -54,13 +54,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Body.cs" />
+    <Compile Include="BodyFrame.cs" />
     <Compile Include="BodyFrameReader.cs" />
     <Compile Include="BodyFrameSource.cs" />
     <Compile Include="ColorFrame.cs" />
     <Compile Include="ColorFrameReader.cs" />
     <Compile Include="ColorFrameSource.cs" />
+    <Compile Include="Interfaces\IBody.cs" />
+    <Compile Include="Interfaces\IBodyFrame.cs" />
     <Compile Include="Interfaces\IBodyFrameReader.cs" />
     <Compile Include="Interfaces\IBodyFrameSource.cs" />
+    <Compile Include="Joint.cs" />
     <Compile Include="KinectSensor.cs" />
     <Compile Include="Utilities\ComDispose.cs" />
     <Compile Include="Interfaces\IColorFrame.cs" />

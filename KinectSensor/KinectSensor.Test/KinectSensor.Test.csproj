@@ -6,7 +6,7 @@
     <ProjectGuid>{54F602DA-F4DA-4761-9AE5-BEA40F76B5E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KinectSensor.Test</RootNamespace>
+    <RootNamespace>Kinect2.Test</RootNamespace>
     <AssemblyName>KinectSensor.Test</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -78,6 +78,8 @@
     <Compile Include="ColorFrameTest.cs" />
     <Compile Include="ColorFrameReaderTest.cs" />
     <Compile Include="BodyFrameSourceTest.cs" />
+    <Compile Include="BodyFrameReaderTest.cs" />
+    <Compile Include="BodyFrameTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KinectSensor\KinectSensor.csproj">

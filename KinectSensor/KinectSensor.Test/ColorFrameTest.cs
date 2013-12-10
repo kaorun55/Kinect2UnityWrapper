@@ -8,19 +8,6 @@ namespace Kinect2.Test
     [TestClass]
     public class ColorFrameTest
     {
-        ColorFrameReader colorRedaer;
-
-        public ColorFrame GetColorFrame()
-        {
-            colorRedaer = ColorFrameReaderTest.GetColorFrameReader();
-            return AcquireLatestFrame();
-        }
-
-        public ColorFrame AcquireLatestFrame()
-        {
-            return colorRedaer.AcquireLatestFrame();
-        }
-
         [TestMethod]
         public void CopyConvertedFrameDataToArray()
         {
@@ -39,14 +26,13 @@ namespace Kinect2.Test
         }
 
         [TestMethod]
-        public void AcquireLatestFrameTest()
+        public void AcquireLatestFrame()
         {
-            using ( var frame = GetColorFrame() ) {
+            var colorRedaer = ColorFrameReaderTest.GetColorFrameReader();
+            using ( var frame = colorRedaer.AcquireLatestFrame() ) {
             }
 
-            Thread.Sleep( 100 );
-
-            using ( var frame2 = AcquireLatestFrame() ) {
+            using ( var frame2 = colorRedaer.AcquireLatestFrame() ) {
             }
         }
     }
