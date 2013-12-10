@@ -14,43 +14,35 @@ namespace Kinect2
     {
         // WAITABLE_HANDLE *
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int SubscribeFrameCaptured( out IntPtr waitableHandle );
+        void SubscribeFrameCaptured( out IntPtr waitableHandle );
         
         // WAITABLE_HANDLE
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int UnsubscribeFrameCaptured( IntPtr waitableHandle );
+        void UnsubscribeFrameCaptured( IntPtr waitableHandle );
         
         // WAITABLE_HANDLE
         // IFrameCapturedEventArgs **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int GetFrameCapturedEventData( IntPtr waitableHandle, out IntPtr eventData );
+        void GetFrameCapturedEventData( IntPtr waitableHandle, out IntPtr eventData );
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_IsActive( out IntPtr isActive );
+        void get_IsActive( out IntPtr isActive );
         
         // IColorFrameReader **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int OpenReader( out IntPtr reader );
+        IntPtr OpenReader();
         
         // ColorImageFormat
         // IFrameDescription **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int CreateFrameDescription( Int64 format, IntPtr frameDescription );
+        void CreateFrameDescription( Int64 format, IntPtr frameDescription );
         
         // IFrameDescription **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_FrameDescription( IntPtr rawFrameDescription );
+        void get_FrameDescription( IntPtr rawFrameDescription );
         
         // IKinectSensor **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_KinectSensor( IntPtr sensor );
+        void get_KinectSensor( IntPtr sensor );
     }
 }

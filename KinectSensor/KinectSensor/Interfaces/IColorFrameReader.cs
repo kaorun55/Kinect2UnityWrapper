@@ -14,34 +14,27 @@ namespace Kinect2
     {
         // _Out_  WAITABLE_HANDLE *
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int SubscribeFrameArrived( out IntPtr waitableHandle );
+        void SubscribeFrameArrived( out IntPtr waitableHandle );
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int UnsubscribeFrameArrived( IntPtr waitableHandle );
+        void UnsubscribeFrameArrived( IntPtr waitableHandle );
         
         // _Out_  IColorFrameArrivedEventArgs **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int GetFrameArrivedEventData( IntPtr waitableHandle, out IntPtr eventData );
+        void GetFrameArrivedEventData( IntPtr waitableHandle, out IntPtr eventData );
         
         // _COM_Outptr_  IColorFrame **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int AcquireLatestFrame( out IntPtr colorFrame );
+        IntPtr AcquireLatestFrame();
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_IsPaused( out IntPtr isPaused );
+        void get_IsPaused( out IntPtr isPaused );
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int put_IsPaused( Int64 isPaused );
+        void put_IsPaused( Int64 isPaused );
         
         // _COM_Outptr_  IColorFrameSource **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_ColorFrameSource( out IntPtr colorFrameSource );
+        void get_ColorFrameSource( out IntPtr colorFrameSource );
     }
 }

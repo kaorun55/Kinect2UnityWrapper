@@ -13,7 +13,7 @@ Platform assembly: C:\Users\kaorun55\Documents\GitHub\Kinect2UnityWrapper\Kinect
 Loading C:\Users\kaorun55\Documents\GitHub\Kinect2UnityWrapper\KinectV2Smaple1\win_x86_64\sample_Data\Managed\Assembly-CSharp.dll into Unity Child Domain
 Platform assembly: C:\Users\kaorun55\Documents\GitHub\Kinect2UnityWrapper\KinectV2Smaple1\win_x86_64\sample_Data\Managed\KinectSensor.dll (this message is harmless)
 Loading C:\Users\kaorun55\Documents\GitHub\Kinect2UnityWrapper\KinectV2Smaple1\win_x86_64\sample_Data\Managed\KinectSensor.dll into Unity Child Domain
-- Completed reload, in  0.060 seconds
+- Completed reload, in  0.064 seconds
 desktop: 1920x1080 59Hz; virtual: 3840x1080 at 0,0
 <RI> Initializing input.
 <RI> Input initialized.

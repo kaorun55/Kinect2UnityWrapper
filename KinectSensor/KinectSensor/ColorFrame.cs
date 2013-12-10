@@ -26,11 +26,7 @@ namespace Kinect2
         public void CopyConvertedFrameDataToArray(byte[] frameData, ColorImageFormat colorFormat)
         {
             using ( var ptr = new UnmanagedMemory( frameData.Length ) ) {
-                var hr = ComPointer.CopyConvertedFrameDataToArray( (ulong)frameData.Length, ptr.Pointer, (UInt64)colorFormat );
-                if ( hr != 0 ) {
-                    throw new Exception( hr.ToString() );
-                }
-
+                ComPointer.CopyConvertedFrameDataToArray( (ulong)frameData.Length, ptr.Pointer, (UInt64)colorFormat );
                 Marshal.Copy( ptr.Pointer, frameData, 0, frameData.Length );
             }
         }

@@ -14,13 +14,7 @@ namespace Kinect2
 
         public ColorFrame AcquireLatestFrame()
         {
-            IntPtr ptr = IntPtr.Zero;
-            var hr = ComPointer.AcquireLatestFrame( out ptr );
-            if ( hr != 0 ) {
-                throw new Exception( hr.ToString() );
-            }
-
-            return new ColorFrame( ptr );
+            return new ColorFrame( ComPointer.AcquireLatestFrame() );
         }
     }
 }
