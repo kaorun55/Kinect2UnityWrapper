@@ -26,7 +26,7 @@ namespace Kinect2.Test
             var hr = colorFrame.OpenReader( out ptr );
             Assert.AreEqual( 0, hr );
 
-            var reader = (ColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
+            var reader = (IColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
         }
     }
 }

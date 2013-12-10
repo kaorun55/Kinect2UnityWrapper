@@ -36,18 +36,7 @@ public class KinectBehaviourScript : MonoBehaviour {
 		var colorFrame = GetColorFrameSource();
 		var hr = colorFrame.OpenReader( out ptr );
 		
-		return (ColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
-	}
-
-	public ColorFrame GetColorFrame( ColorFrameReader colorReader )
-	{
-		IntPtr ptr = IntPtr.Zero;
-		var hr = colorReader.AcquireLatestFrame( out ptr );
-		if (ptr == IntPtr.Zero ) {
-			return null;
-		}
-
-		return (ColorFrame)Marshal.GetObjectForIUnknown( ptr );
+		return new ColorFrameReader( ptr );
 	}
 
 	ColorFrameReader colorReader;
@@ -89,12 +78,8 @@ public class KinectBehaviourScript : MonoBehaviour {
 				tm.text = "colorReader == null";
 				return;
 			}
-			var hr = colorReader.AcquireLatestFrame( out colorFramePtr );
-			if (colorFramePtr == IntPtr.Zero ) {
-				return;
-			}
 
-			using ( var colorFrame = new ColorFrame( colorFramePtr ) ) {
+			using ( var colorFrame = colorReader.AcquireLatestFrame() ) {
 				if ( colorFrame == null ) {
 					tm.text = "colorFrame == null";
 					return;

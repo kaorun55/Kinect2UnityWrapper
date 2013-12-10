@@ -10,7 +10,7 @@ namespace Kinect2
     [Guid( "9BEA498C-C59C-4653-AAF9-D884BAB7C35B" )]
     [InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
     [ComImport()]
-    public interface ColorFrameReader
+    public interface IColorFrameReader
     {
         // _Out_  WAITABLE_HANDLE *
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]

@@ -14,7 +14,7 @@ namespace Kinect2.Test
             var hr = colorFrame.OpenReader( out ptr );
             Assert.AreEqual( 0, hr );
 
-            return (ColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
+            return new ColorFrameReader( ptr );
         }
 
         [TestMethod]
@@ -22,10 +22,8 @@ namespace Kinect2.Test
         {
             IntPtr ptr = IntPtr.Zero;
             var colorRedaer = GetColorFrameReader();
-            var hr = colorRedaer.AcquireLatestFrame( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            var frame = (IColorFrame)Marshal.GetObjectForIUnknown( ptr );
+            using ( var colorFrame = colorRedaer.AcquireLatestFrame() ) {
+            }
         }
     }
 }

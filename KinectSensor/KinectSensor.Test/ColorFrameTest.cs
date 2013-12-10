@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Kinect2.Test
@@ -17,11 +18,7 @@ namespace Kinect2.Test
 
         public ColorFrame AcquireLatestFrame()
         {
-            IntPtr ptr = IntPtr.Zero;
-            var hr = colorRedaer.AcquireLatestFrame( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            return new ColorFrame( ptr );
+            return colorRedaer.AcquireLatestFrame();
         }
 
         [TestMethod]
@@ -46,6 +43,8 @@ namespace Kinect2.Test
         {
             using ( var frame = GetColorFrame() ) {
             }
+
+            Thread.Sleep( 100 );
 
             using ( var frame2 = AcquireLatestFrame() ) {
             }
