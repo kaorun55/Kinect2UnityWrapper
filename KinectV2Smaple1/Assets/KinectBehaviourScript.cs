@@ -93,33 +93,25 @@ public class KinectBehaviourScript : MonoBehaviour {
 			if (colorFramePtr == IntPtr.Zero ) {
 				return;
 			}
-			
-			var colorFrame = (ColorFrame)Marshal.GetObjectForIUnknown( colorFramePtr );
-			if ( colorFrame == null ) {
-				tm.text = "colorFrame == null";
-				return;
+
+			using ( var colorFrame = new ColorFrame( colorFramePtr ) ) {
+				if ( colorFrame == null ) {
+					tm.text = "colorFrame == null";
+					return;
+				}
+				frameCount++;
+				tm3.text = frameCount.ToString();
+				
+				
+				UInt64 count = 1920*1080*4;
+				var pixels = new byte[count];
+				colorFrame.CopyConvertedFrameDataToArray( pixels, ColorImageFormat.Bgra );
+				
+				tm2.text = string.Format( "{0},{1},{2},{3}", pixels[0], pixels[1], pixels[2], pixels[3] );
+				
+				texture.LoadRawTextureData( pixels );
+				texture.Apply();
 			}
-			frameCount++;
-			tm3.text = frameCount.ToString();
-			
-
-			UInt64 count = 1920*1080*4;
-			IntPtr ptr = Marshal.AllocHGlobal( (int)count );
-			hr = colorFrame.CopyConvertedFrameDataToArray( count, ptr, (UInt64)ColorImageFormat.Bgra );
-
-			var pixels = new byte[count];
-			Marshal.Copy( ptr, pixels, 0, (int)count );
-			Marshal.FreeHGlobal( ptr );
-
-			//tm.text = "hgoepiyo";
-
-			tm2.text = string.Format( "{0},{1},{2},{3}", pixels[0], pixels[1], pixels[2], pixels[3] );
-			
-			texture.LoadRawTextureData( pixels );
-			texture.Apply();
-			
-			Marshal.ReleaseComObject( colorFrame );
-			Marshal.Release( colorFramePtr );
 		} catch (Exception ex) {
 			tm.text = ex.StackTrace;
 		}

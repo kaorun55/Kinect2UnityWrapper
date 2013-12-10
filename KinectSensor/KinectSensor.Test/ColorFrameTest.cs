@@ -21,7 +21,7 @@ namespace Kinect2.Test
             var hr = colorRedaer.AcquireLatestFrame( out ptr );
             Assert.AreEqual( 0, hr );
 
-            return (ColorFrame)Marshal.GetObjectForIUnknown( ptr );
+            return new ColorFrame( ptr );
         }
 
         [TestMethod]
@@ -44,11 +44,11 @@ namespace Kinect2.Test
         [TestMethod]
         public void AcquireLatestFrameTest()
         {
-            var frame = GetColorFrame();
-            Marshal.ReleaseComObject( frame );
+            using ( var frame = GetColorFrame() ) {
+            }
 
-            frame = GetColorFrame();
-            Marshal.ReleaseComObject( frame );
+            using ( var frame2 = AcquireLatestFrame() ) {
+            }
         }
     }
 }

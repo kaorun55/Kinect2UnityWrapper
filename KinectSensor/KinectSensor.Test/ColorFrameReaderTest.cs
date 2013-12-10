@@ -25,7 +25,7 @@ namespace Kinect2.Test
             var hr = colorRedaer.AcquireLatestFrame( out ptr );
             Assert.AreEqual( 0, hr );
 
-            var frame = (ColorFrame)Marshal.GetObjectForIUnknown( ptr );
+            var frame = (IColorFrame)Marshal.GetObjectForIUnknown( ptr );
         }
     }
 }
