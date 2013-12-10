@@ -80,6 +80,7 @@
     <Compile Include="BodyFrameSourceTest.cs" />
     <Compile Include="BodyFrameReaderTest.cs" />
     <Compile Include="BodyFrameTest.cs" />
+    <Compile Include="BodyTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KinectSensor\KinectSensor.csproj">

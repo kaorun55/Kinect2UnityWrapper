@@ -16,7 +16,6 @@ namespace Kinect2
 
         public void GetAndRefreshBodyData( Body[] bodies )
         {
-            IBody[] b = new IBody[6];
             IntPtr[] ptr = new IntPtr[6];
             ComPointer.GetAndRefreshBodyData( 6, ptr );
             for ( int i = 0; i < bodies.Length; i++ ) {

@@ -17,5 +17,12 @@ namespace Kinect2.Test
         {
             var bodyFrame = GetBodyFrameSource();
         }
+
+        [TestMethod]
+        public void BodyCount()
+        {
+            var bodyFrame = GetBodyFrameSource();
+            Assert.AreEqual( 6, bodyFrame.BodyCount );
+        }
     }
 }

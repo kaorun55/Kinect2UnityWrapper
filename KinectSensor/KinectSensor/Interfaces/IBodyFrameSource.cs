@@ -33,8 +33,7 @@ namespace Kinect2
         
         // _Out_  INT32 *bodyCount
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_BodyCount( out IntPtr bodyCount );
+        Int32 get_BodyCount();
         
         // _COM_Outptr_  IBodyFrameReader **reader
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]

@@ -38,5 +38,13 @@ namespace Kinect2
 
             base.DisposeUnmanagedResource();
         }
+
+        public int BodyCount
+        {
+            get
+            {
+                return ComPointer.get_BodyCount();
+            }
+        }
     }
 }
