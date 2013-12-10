@@ -53,7 +53,7 @@ namespace Kinect2
         // IBodyFrameSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
         [PreserveSig]
-        int get_BodyFrameSource( IntPtr bodyFrameSource );
+        int get_BodyFrameSource( out IntPtr bodyFrameSource );
         
         // IBodyIndexFrameSource **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]

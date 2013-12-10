@@ -64,9 +64,33 @@ namespace Kinect2
             }
         }
 
+        BodyFrameSource bodyFrameSource = null;
+        public BodyFrameSource BodyFrameSource
+        {
+            get
+            {
+                if ( bodyFrameSource == null ) {
+                    IntPtr ptr = IntPtr.Zero;
+                    var hr = ComPointer.get_BodyFrameSource( out ptr );
+                    if ( hr != 0 ) {
+                        throw new Exception( hr.ToString() );
+                    }
+
+                    colorFrameSource = new ColorFrameSource( ptr );
+                }
+
+                return bodyFrameSource;
+            }
+        }
+
 
         protected override void DisposeUnmanagedResource()
         {
+            if ( bodyFrameSource != null ) {
+                bodyFrameSource.Dispose();
+                bodyFrameSource = null;
+            }
+
             if ( colorFrameSource != null ) {
                 colorFrameSource.Dispose();
                 colorFrameSource = null;

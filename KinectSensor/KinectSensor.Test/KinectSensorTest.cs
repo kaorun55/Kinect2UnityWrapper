@@ -40,11 +40,19 @@ namespace Kinect2.Test
         }
 
         [TestMethod]
-        public void get_ColorFrameSource()
+        public void ColorFrameSource()
         {
             var kinect = OpenKinectSensor();
 
             var colorFrameSource = kinect.ColorFrameSource;
+        }
+
+        [TestMethod]
+        public void BodyFrameSource()
+        {
+            var kinect = OpenKinectSensor();
+
+            var bodyFrameSource = kinect.BodyFrameSource;
         }
     }
 }
