@@ -6,39 +6,7 @@ using System.Runtime.InteropServices;
 
 public class KinectBehaviourScript : MonoBehaviour {
 
-	public KinectSensor GetKinectSensor()
-	{
-		IntPtr sensor = IntPtr.Zero;
-		var hr = NativeMethods.GetDefaultKinectSensor( ref sensor );
-		return (KinectSensor)Marshal.GetObjectForIUnknown( sensor );
-	}
-
-	public KinectSensor OpenKinectSensor()
-	{
-		var kinect = GetKinectSensor();
-		var hr = kinect.Open();
-		return kinect;
-	}
-
-	public ColorFrameSource GetColorFrameSource()
-	{
-		KinectSensor kinect = OpenKinectSensor();
-		
-		IntPtr ptr = IntPtr.Zero;
-		var hr = kinect.get_ColorFrameSource( out ptr );
-		
-		return (ColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
-	}
-
-	public ColorFrameReader GetColorFrameReader()
-	{
-		IntPtr ptr = IntPtr.Zero;
-		var colorFrame = GetColorFrameSource();
-		var hr = colorFrame.OpenReader( out ptr );
-		
-		return new ColorFrameReader( ptr );
-	}
-
+	KinectSensor kinect;
 	ColorFrameReader colorReader;
 	TextMesh tm;
 	TextMesh tm2;
@@ -57,7 +25,9 @@ public class KinectBehaviourScript : MonoBehaviour {
 		go = GameObject.Find("TextMessageFPS");
 		tm3 = (TextMesh)go.GetComponent("TextMesh");
 
-		colorReader = GetColorFrameReader();
+		kinect = KinectSensor.Default;
+		kinect.Open();
+		colorReader = kinect.ColorFrameSource.OpenReader();
 
 		if (texture == null) {
 			texture = new Texture2D(1920,1080, TextureFormat.BGRA32,false);
@@ -71,8 +41,6 @@ public class KinectBehaviourScript : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		IntPtr colorFramePtr = IntPtr.Zero;
-
 		try {
 			if ( colorReader == null ) {
 				tm.text = "colorReader == null";

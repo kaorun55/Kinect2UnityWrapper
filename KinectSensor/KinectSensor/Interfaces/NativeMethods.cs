@@ -10,9 +10,9 @@ namespace Kinect2
     {
         // V2
         [DllImport( @"Kinect20.dll" )]
-        public static extern int GetKinectSensorCollection( ref IntPtr kinectSensorCollection );
+        public static extern int GetKinectSensorCollection( out IntPtr kinectSensorCollection );
 
         [DllImport( @"Kinect20.dll" )]
-        public static extern int GetDefaultKinectSensor( ref IntPtr defaultKinectSensor );
+        public static extern int GetDefaultKinectSensor( out IntPtr defaultKinectSensor );
     }
 }

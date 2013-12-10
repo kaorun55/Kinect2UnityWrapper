@@ -10,7 +10,7 @@ namespace Kinect2.Test
         public void GetDefaultKinectSensor()
         {
             IntPtr sensor = IntPtr.Zero;
-            var hr = NativeMethods.GetDefaultKinectSensor( ref sensor );
+            var hr = NativeMethods.GetDefaultKinectSensor( out sensor );
             Assert.AreEqual( 0, hr );
         }
 
@@ -18,7 +18,7 @@ namespace Kinect2.Test
         public void GetKinectSensorCollection()
         {
             IntPtr sensor = IntPtr.Zero;
-            var hr = NativeMethods.GetKinectSensorCollection( ref sensor );
+            var hr = NativeMethods.GetKinectSensorCollection( out sensor );
             Assert.AreEqual( 0, hr );
         }
 

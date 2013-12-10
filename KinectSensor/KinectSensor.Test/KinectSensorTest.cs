@@ -9,59 +9,42 @@ namespace Kinect2.Test
     {
         public static KinectSensor GetKinectSensor()
         {
-            IntPtr sensor = IntPtr.Zero;
-            var hr = NativeMethods.GetDefaultKinectSensor( ref sensor );
-            Assert.AreEqual( 0, hr );
-
-            return (KinectSensor)Marshal.GetObjectForIUnknown( sensor );
+            return KinectSensor.Default;
         }
 
         public static KinectSensor OpenKinectSensor()
         {
-            var kinect = GetKinectSensor();
-            var hr = kinect.Open();
-            Assert.AreEqual( 0, hr );
-
+            var kinect = KinectSensor.Default;
+            kinect.Open();
             return kinect;
         }
 
         [TestMethod]
         public void CreateInstance()
         {
-            KinectSensor kinect = GetKinectSensor();
-
-            IntPtr status = IntPtr.Zero;
-            var hr = kinect.get_Status( out status );
-            Assert.AreEqual( 0, hr );
-
-            //Assert.AreEqual( 0, Marshal.ReadInt32( status ) );
+            KinectSensor kinect = KinectSensor.Default;
         }
 
         [TestMethod]
         public void Open()
         {
-            KinectSensor kinect = OpenKinectSensor();
+            var kinect = OpenKinectSensor();
         }
 
         [TestMethod]
         public void Close()
         {
-            KinectSensor kinect = OpenKinectSensor();
+            var kinect = OpenKinectSensor();
 
-            var hr = kinect.Close();
-            Assert.AreEqual( 0, hr );
+            kinect.Close();
         }
 
         [TestMethod]
         public void get_ColorFrameSource()
         {
-            KinectSensor kinect = OpenKinectSensor();
+            var kinect = OpenKinectSensor();
 
-            IntPtr ptr = IntPtr.Zero;
-            var hr = kinect.get_ColorFrameSource( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            var colorFrameSource = (IColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
+            var colorFrameSource = kinect.ColorFrameSource;
         }
     }
 }

@@ -9,15 +9,14 @@ namespace Kinect2.Test
     {
         public static ColorFrameReader GetColorFrameReader()
         {
-            IntPtr ptr = IntPtr.Zero;
-            var colorFrame = ColorFrameSourceTest.GetColorFrameSource();
-            return colorFrame.OpenReader();
+            var kinect = KinectSensor.Default;
+            kinect.Open();
+            return kinect.ColorFrameSource.OpenReader();
         }
 
         [TestMethod]
         public void AcquireLatestFrame()
         {
-            IntPtr ptr = IntPtr.Zero;
             var colorRedaer = GetColorFrameReader();
             using ( var colorFrame = colorRedaer.AcquireLatestFrame() ) {
             }

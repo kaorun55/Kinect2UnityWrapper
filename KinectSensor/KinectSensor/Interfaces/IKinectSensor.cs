@@ -10,7 +10,7 @@ namespace Kinect2
     [Guid( "3C6EBA94-0DE1-4360-B6D4-653A10794C8B" )]
     [InterfaceType( ComInterfaceType.InterfaceIsIUnknown )]
     [ComImport()]
-    public interface KinectSensor
+    public interface IKinectSensor
     {
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
         [PreserveSig]

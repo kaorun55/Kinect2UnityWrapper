@@ -22,7 +22,7 @@ namespace Kinect2
             ComPointer = (T)Marshal.GetObjectForIUnknown( ptr );
         }
 
-        private void DisposeUnmanagedResource()
+        protected virtual void DisposeUnmanagedResource()
         {
             if ( ComPointer != null ) {
                 Marshal.ReleaseComObject( ComPointer );
@@ -35,7 +35,7 @@ namespace Kinect2
             }
         }
 
-        private void DisposeManagedResource()
+        protected virtual void DisposeManagedResource()
         {
         }
 

@@ -9,13 +9,8 @@ namespace Kinect2.Test
     {
         public static ColorFrameSource GetColorFrameSource()
         {
-            KinectSensor kinect = KinectSensorTest.OpenKinectSensor();
-
-            IntPtr ptr = IntPtr.Zero;
-            var hr = kinect.get_ColorFrameSource( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            return new ColorFrameSource( ptr );
+            var kinect = KinectSensorTest.OpenKinectSensor();
+            return kinect.ColorFrameSource;
         }
 
         [TestMethod]
