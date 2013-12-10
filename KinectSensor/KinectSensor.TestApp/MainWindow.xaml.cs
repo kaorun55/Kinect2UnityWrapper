@@ -23,6 +23,7 @@ namespace KinectSensor.TestApp
     {
         Kinect2.KinectSensor kinect;
         ColorFrameReader colorReader;
+        BodyFrameReader bodyReader;
 
         public MainWindow()
         {
@@ -36,6 +37,7 @@ namespace KinectSensor.TestApp
             kinect = Kinect2.KinectSensor.Default;
             kinect.Open();
             colorReader = kinect.ColorFrameSource.OpenReader();
+            bodyReader = kinect.BodyFrameSource.OpenReader();
 
             CompositionTarget.Rendering += CompositionTarget_Rendering;
         }
@@ -49,6 +51,13 @@ namespace KinectSensor.TestApp
                         colorFrame.CopyConvertedFrameDataToArray( pixels, ColorImageFormat.Bgra );
 
                         ImageColor.Source = BitmapSource.Create( 1920, 1080, 96, 96, PixelFormats.Bgra32, null, pixels, 1920 * 4 );
+                    }
+                }
+
+                using ( var bodyFrame = bodyReader.AcquireLatestFrame() ) {
+                    if ( bodyFrame != null ) {
+                        var bodies = new Body[6];
+                        bodyFrame.GetAndRefreshBodyData( bodies );
                     }
                 }
             }
