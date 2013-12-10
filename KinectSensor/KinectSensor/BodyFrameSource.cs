@@ -7,36 +7,36 @@ namespace Kinect2
 {
     public class BodyFrameSource : ComPtr<IBodyFrameSource>
     {
-        //BodyFrameReader bodyFrameReader = null;
+        BodyFrameReader bodyFrameReader = null;
 
         public BodyFrameSource( IntPtr ptr )
             : base( ptr )
         {
         }
 
-        //public BodyFrameReader OpenReader()
-        //{
-        //    if ( bodyFrameReader == null ) {
-        //        IntPtr ptr = IntPtr.Zero;
-        //        var hr = ComPointer.OpenReader( out ptr );
-        //        if ( hr != 0 ) {
-        //            throw new Exception( hr.ToString() );
-        //        }
+        public BodyFrameReader OpenReader()
+        {
+            if ( bodyFrameReader == null ) {
+                IntPtr ptr = IntPtr.Zero;
+                var hr = ComPointer.OpenReader( out ptr );
+                if ( hr != 0 ) {
+                    throw new Exception( hr.ToString() );
+                }
 
-        //        bodyFrameReader = new BodyFrameReader( ptr );
-        //    }
+                bodyFrameReader = new BodyFrameReader( ptr );
+            }
 
-        //    return bodyFrameReader;
-        //}
+            return bodyFrameReader;
+        }
 
-        //protected override void DisposeUnmanagedResource()
-        //{
-        //    if ( bodyFrameReader != null ) {
-        //        bodyFrameReader.Dispose();
-        //        bodyFrameReader = null;
-        //    }
+        protected override void DisposeUnmanagedResource()
+        {
+            if ( bodyFrameReader != null ) {
+                bodyFrameReader.Dispose();
+                bodyFrameReader = null;
+            }
 
-        //    base.DisposeUnmanagedResource();
-        //}
+            base.DisposeUnmanagedResource();
+        }
     }
 }

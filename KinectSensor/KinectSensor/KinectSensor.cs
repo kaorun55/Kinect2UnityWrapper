@@ -76,7 +76,7 @@ namespace Kinect2
                         throw new Exception( hr.ToString() );
                     }
 
-                    colorFrameSource = new ColorFrameSource( ptr );
+                    bodyFrameSource = new BodyFrameSource( ptr );
                 }
 
                 return bodyFrameSource;

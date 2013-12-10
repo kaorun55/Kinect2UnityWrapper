@@ -54,10 +54,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BodyFrameReader.cs" />
     <Compile Include="BodyFrameSource.cs" />
     <Compile Include="ColorFrame.cs" />
     <Compile Include="ColorFrameReader.cs" />
     <Compile Include="ColorFrameSource.cs" />
+    <Compile Include="Interfaces\IBodyFrameReader.cs" />
     <Compile Include="Interfaces\IBodyFrameSource.cs" />
     <Compile Include="KinectSensor.cs" />
     <Compile Include="Utilities\ComDispose.cs" />
