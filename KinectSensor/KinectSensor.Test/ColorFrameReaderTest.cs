@@ -11,10 +11,7 @@ namespace Kinect2.Test
         {
             IntPtr ptr = IntPtr.Zero;
             var colorFrame = ColorFrameSourceTest.GetColorFrameSource();
-            var hr = colorFrame.OpenReader( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            return new ColorFrameReader( ptr );
+            return colorFrame.OpenReader();
         }
 
         [TestMethod]

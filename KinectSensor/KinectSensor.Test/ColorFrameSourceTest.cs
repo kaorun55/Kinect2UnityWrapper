@@ -15,18 +15,13 @@ namespace Kinect2.Test
             var hr = kinect.get_ColorFrameSource( out ptr );
             Assert.AreEqual( 0, hr );
 
-            return (ColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
+            return new ColorFrameSource( ptr );
         }
 
         [TestMethod]
         public void OpenReader()
         {
-            IntPtr ptr = IntPtr.Zero;
             var colorFrame = GetColorFrameSource();
-            var hr = colorFrame.OpenReader( out ptr );
-            Assert.AreEqual( 0, hr );
-
-            var reader = (IColorFrameReader)Marshal.GetObjectForIUnknown( ptr );
         }
     }
 }

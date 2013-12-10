@@ -61,7 +61,7 @@ namespace Kinect2.Test
             var hr = kinect.get_ColorFrameSource( out ptr );
             Assert.AreEqual( 0, hr );
 
-            var colorFrameSource = (ColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
+            var colorFrameSource = (IColorFrameSource)Marshal.GetObjectForIUnknown( ptr );
         }
     }
 }

@@ -56,10 +56,11 @@
   <ItemGroup>
     <Compile Include="ColorFrame.cs" />
     <Compile Include="ColorFrameReader.cs" />
+    <Compile Include="ColorFrameSource.cs" />
     <Compile Include="Utilities\ComDispose.cs" />
     <Compile Include="Interfaces\IColorFrame.cs" />
     <Compile Include="Interfaces\IColorFrameReader.cs" />
-    <Compile Include="Interfaces\ColorFrameSource.cs" />
+    <Compile Include="Interfaces\IColorFrameSource.cs" />
     <Compile Include="Interfaces\KinectSensor.cs" />
     <Compile Include="Interfaces\NativeMethods.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
