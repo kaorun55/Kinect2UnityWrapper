@@ -13,91 +13,72 @@ namespace Kinect2
     public interface IKinectSensor
     {
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int SubscribeIsAvailableChanged( out IntPtr waitableHandle );
+        void SubscribeIsAvailableChanged( out IntPtr waitableHandle );
         
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int UnsubscribeIsAvailableChanged( IntPtr waitableHandle );
+        void UnsubscribeIsAvailableChanged( IntPtr waitableHandle );
         
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int GetIsAvailableChangedEventData(  IntPtr waitableHandle, out IntPtr eventData );
+        void GetIsAvailableChangedEventData(  IntPtr waitableHandle, out IntPtr eventData );
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int Open();
+        void Open();
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int Close();
+        void Close();
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_IsOpen( out IntPtr isOpen );
+        void get_IsOpen( out IntPtr isOpen );
         
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_IsAvailable( out IntPtr isAvailable );
+        void get_IsAvailable( out IntPtr isAvailable );
         
         // IColorFrameSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_ColorFrameSource( out IntPtr colorFrameSource);
+        IntPtr get_ColorFrameSource();
         
         // IDepthFrameSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_DepthFrameSource( IntPtr depthFrameSource);
+        IntPtr get_DepthFrameSource();
         
         // IBodyFrameSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_BodyFrameSource( out IntPtr bodyFrameSource );
+        IntPtr get_BodyFrameSource();
         
         // IBodyIndexFrameSource **
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_BodyIndexFrameSource( IntPtr bodyIndexFrameSource );
+        IntPtr get_BodyIndexFrameSource();
         
         // IInfraredFrameSource** 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_InfraredFrameSource( IntPtr infraredFrameSource );
+        IntPtr get_InfraredFrameSource();
         
         // ILongExposureInfraredFrameSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_LongExposureInfraredFrameSource( IntPtr longExposureInfraredFrameSource );
+        void get_LongExposureInfraredFrameSource( IntPtr longExposureInfraredFrameSource );
         
         // IAudioSource**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_AudioSource( IntPtr audioSource );
+        void get_AudioSource( IntPtr audioSource );
         
         // IMultiSourceFrameReader** 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int OpenMultiSourceFrameReader( UInt64 enabledFrameSourceTypes, IntPtr multiSourceFrameReader );
+        void OpenMultiSourceFrameReader( UInt64 enabledFrameSourceTypes, IntPtr multiSourceFrameReader );
         
         // ICoordinateMapper**
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_CoordinateMapper( IntPtr coordinateMapper );
+        void get_CoordinateMapper( IntPtr coordinateMapper );
         
         // outwrites_z_(bufferSize)  WCHAR *
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_UniqueKinectId( int bufferSize, IntPtr uniqueKinectId );
+        void get_UniqueKinectId( int bufferSize, IntPtr uniqueKinectId );
         
         // KinectStatus*
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_Status( out IntPtr status);
+        void get_Status( out IntPtr status);
         
         // DWORD *
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        [PreserveSig]
-        int get_KinectCapabilities( out IntPtr capabilities);
+        void get_KinectCapabilities( out IntPtr capabilities);
     }
 }

@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectSensor", "KinectSenso
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectSensor.Test", "KinectSensor.Test\KinectSensor.Test.csproj", "{54F602DA-F4DA-4761-9AE5-BEA40F76B5E6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinectSensor.TestApp", "KinectSensor.TestApp\KinectSensor.TestApp.csproj", "{0A286CAC-A176-4C79-A09F-85A2A558141A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,16 @@ Global
 		{54F602DA-F4DA-4761-9AE5-BEA40F76B5E6}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{54F602DA-F4DA-4761-9AE5-BEA40F76B5E6}.Release|x64.ActiveCfg = Release|x64
 		{54F602DA-F4DA-4761-9AE5-BEA40F76B5E6}.Release|x64.Build.0 = Release|x64
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{0A286CAC-A176-4C79-A09F-85A2A558141A}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

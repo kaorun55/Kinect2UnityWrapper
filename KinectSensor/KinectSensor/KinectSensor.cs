@@ -31,18 +31,12 @@ namespace Kinect2
 
         public void Open()
         {
-            var hr = ComPointer.Open();
-            if ( hr != 0 ) {
-                throw new Exception( hr.ToString() );
-            }
+            ComPointer.Open();
         }
 
         public void Close()
         {
-            var hr = ComPointer.Close();
-            if ( hr != 0 ) {
-                throw new Exception( hr.ToString() );
-            }
+            ComPointer.Close();
         }
 
         ColorFrameSource colorFrameSource = null;
@@ -51,13 +45,7 @@ namespace Kinect2
             get
             {
                 if ( colorFrameSource == null ) {
-                    IntPtr ptr = IntPtr.Zero;
-                    var hr = ComPointer.get_ColorFrameSource( out ptr );
-                    if ( hr != 0 ) {
-                        throw new Exception( hr.ToString() );
-                    }
-
-                    colorFrameSource = new ColorFrameSource( ptr );
+                    colorFrameSource = new ColorFrameSource( ComPointer.get_ColorFrameSource() );
                 }
 
                 return colorFrameSource;
@@ -70,13 +58,7 @@ namespace Kinect2
             get
             {
                 if ( bodyFrameSource == null ) {
-                    IntPtr ptr = IntPtr.Zero;
-                    var hr = ComPointer.get_BodyFrameSource( out ptr );
-                    if ( hr != 0 ) {
-                        throw new Exception( hr.ToString() );
-                    }
-
-                    bodyFrameSource = new BodyFrameSource( ptr );
+                    bodyFrameSource = new BodyFrameSource( ComPointer.get_BodyFrameSource() );
                 }
 
                 return bodyFrameSource;
