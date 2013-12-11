@@ -43,7 +43,7 @@ namespace Kinect2.Interfaces
     public interface IBody
     {
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        void GetJoints( uint capacity, IntPtr[] joints );
+        void GetJoints( uint capacity, IntPtr joints );
 
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
         [PreserveSig]

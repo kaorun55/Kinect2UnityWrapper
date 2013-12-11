@@ -16,10 +16,12 @@ namespace Kinect2
 
         public void GetJoints( Joint[] joints )
         {
-            IntPtr[] ptr = new IntPtr[(int)JointType.Count];
-            ComPointer.GetJoints( (uint)JointType.Count, ptr );
-            for ( int i = 0; i < joints.Length; i++ ) {
-                joints[i] = (Joint)Marshal.PtrToStructure( ptr[i], typeof(Joint) );
+            using ( var ptr = new UnmanagedMemory( Marshal.SizeOf( typeof( Joint ) ) * (int)JointType.Count ) ) {
+                ComPointer.GetJoints( (uint)JointType.Count, ptr.Pointer );
+                for ( int i = 0; i < joints.Length; i++ ) {
+                    IntPtr p = (IntPtr)(ptr.Pointer.ToInt64() + (Marshal.SizeOf( typeof( Joint ) )* i));
+                    joints[i] = (Joint)Marshal.PtrToStructure( p, typeof( Joint ) );
+                }
             }
         }
     }

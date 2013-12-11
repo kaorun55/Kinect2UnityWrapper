@@ -12,9 +12,13 @@ namespace Kinect2.Interfaces
     [ComImport()]
     public interface IBodyFrame
     {
-        // _Inout_updates_all_(capacity)  IBody **
+        //virtual HRESULT STDMETHODCALLTYPE GetAndRefreshBodyData( 
+        //    UINT capacity,
+        //    /* [annotation][size_is][out][in] */ 
+        //    _Inout_updates_all_(capacity)  IBody **bodies) = 0;
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
-        void GetAndRefreshBodyData( uint capacity, IntPtr[] bodies );
+        void GetAndRefreshBodyData( uint capacity,
+                                    ref IntPtr bodies );
         
         // _Out_  Vector4 *floorClipPlane
         [MethodImpl( MethodImplOptions.InternalCall, MethodCodeType=MethodCodeType.Runtime )]
